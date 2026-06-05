@@ -1,12 +1,17 @@
 import streamlit as st
 import pickle
 import os
+import joblib
+
 
 st.set_page_config(page_title="Find Apartments", layout="wide")
 
 file_path = os.path.join(os.path.dirname(__file__), 'location_distance.pkl')
-with open(file_path, 'rb') as f:
-    location_df = pickle.load(f)
+BASE_DIR = os.path.dirname(__file__)
+
+
+location_df= joblib.load(os.path.join(BASE_DIR, 'location_distance.joblib'))
+
 
 st.markdown("""
 <style>

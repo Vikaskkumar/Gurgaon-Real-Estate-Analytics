@@ -1,18 +1,17 @@
 import numpy as np
 import streamlit as st
-import pickle
 import pandas as pd
 import os
+import joblib
+
 
 st.title("🏠 Gurgaon Property Price Predictor")
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-with open(os.path.join(BASE_DIR, "df.pkl"), "rb") as file:
-    data = pickle.load(file)
+BASE_DIR = os.path.dirname(__file__)
 
-with open(os.path.join(BASE_DIR, "pipeline.pkl"), "rb") as ml_modl:
-    pipeline = pickle.load(ml_modl)
+data = joblib.load(os.path.join(BASE_DIR, 'df.joblib'))
+pipeline = joblib.load(os.path.join(BASE_DIR, 'pipeline.joblib'))
 
 df = pd.DataFrame(data)
 
