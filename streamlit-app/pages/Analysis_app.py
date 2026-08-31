@@ -17,11 +17,11 @@ temp_df = df.groupby('sector').agg(
     longitude=('longitude', 'first')
 ).reset_index().dropna(subset=['latitude', 'longitude'])
 
-fig_map = px.scatter_mapbox(temp_df, lat='latitude', lon='longitude',
-                            color='avg_price', size='avg_price',
-                            hover_name='sector', zoom=11, height=600,
-                            color_continuous_scale='Turbo', size_max=30)
-fig_map.update_layout(mapbox_style='open-street-map', margin={"r":0,"t":0,"l":0,"b":0})
+fig_map = px.scatter_map(temp_df, lat='latitude', lon='longitude',
+                         color='avg_price', size='avg_price',
+                         hover_name='sector', zoom=11, height=600,
+                         color_continuous_scale='Turbo', size_max=30)
+fig_map.update_layout(map_style='open-street-map', margin={"r":0,"t":0,"l":0,"b":0})
 st.plotly_chart(fig_map, use_container_width=True)
 
 # ── Word Cloud ─────────────────────────────────────────────────────────────────
