@@ -45,9 +45,14 @@ if st.button("Predict"):
     columns = ['property_type', 'sector', 'bedRoom', 'bathroom', 'balcony',
                'agePossession', 'built_up_area', 'servant room', 'store room',
                'furnishing_type', 'luxury_category', 'floor_category',
-               'floorNum', 'study room', 'pooja room', 'others']  # 👈 added
+               'floorNum', 'study room', 'pooja room', 'others']
 
     one_df = pd.DataFrame(input_data, columns=columns)
+    
+    # Add missing columns expected by the pipeline to avoid ValueError in strict sklearn versions
+    one_df['society'] = 'independent'
+    one_df['price_per_sqft'] = 0.0
+
     st.dataframe(one_df)
 
     price = np.expm1(pipeline.predict(one_df))[0]
