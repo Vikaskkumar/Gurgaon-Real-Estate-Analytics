@@ -7,8 +7,9 @@ import matplotlib.pyplot as plt
 st.set_page_config(page_title="Analysis", layout="wide")
 st.title("Gurgaon Sector Price Map")
 
-df = pd.read_csv('pages/new.csv')
-
+import os
+BASE_DIR = os.path.dirname(__file__)
+df = pd.read_csv(os.path.join(BASE_DIR, 'new.csv'))
 # ── Geo Map ────────────────────────────────────────────────────────────────────
 temp_df = df.groupby('sector').agg(
     avg_price=('price', 'mean'),

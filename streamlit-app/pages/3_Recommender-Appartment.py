@@ -6,7 +6,6 @@ import joblib
 
 st.set_page_config(page_title="Find Apartments", layout="wide")
 
-file_path = os.path.join(os.path.dirname(__file__), 'location_distance.pkl')
 BASE_DIR = os.path.dirname(__file__)
 
 
